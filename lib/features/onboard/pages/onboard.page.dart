@@ -15,10 +15,11 @@ class Onboard extends StatefulWidget {
   State<Onboard> createState() => _OnboardState();
 }
 
-class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
+class _OnboardState extends State<Onboard> with TickerProviderStateMixin {
   late final OnboardStore onboardStore;
   late final TabController tabController;
   late final PageController pageController;
+  late final Map<String, AnimationController> imageControllers;
   late final List<Widget> pages;
 
   @override
@@ -27,6 +28,7 @@ class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
 
     setOnboardStore();
     setPages();
+    setImageControllers();
     setTabController();
     setPageController();
   }
@@ -64,12 +66,23 @@ class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
     );
   }
 
+  void setImageControllers() {
+    imageControllers = {
+      for (final Widget page in pages)
+        page.runtimeType.toString(): AnimationController(
+          vsync: this,
+          duration: const Duration(milliseconds: 800),
+        ),
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return OnboardContainer(
       onboardStore: onboardStore,
       tabController: tabController,
       pageController: pageController,
+      imageControllers: imageControllers,
       pages: pages,
       child: Scaffold(
         appBar: AppBar(),

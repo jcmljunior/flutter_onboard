@@ -6,6 +6,7 @@ class OnboardContainer extends InheritedWidget {
   final OnboardStore onboardStore;
   final TabController tabController;
   final PageController pageController;
+  final Map<String, AnimationController> imageControllers;
   final List<Widget> pages;
 
   const OnboardContainer({
@@ -14,6 +15,7 @@ class OnboardContainer extends InheritedWidget {
     required this.onboardStore,
     required this.tabController,
     required this.pageController,
+    required this.imageControllers,
     required this.pages,
   });
 
@@ -21,7 +23,8 @@ class OnboardContainer extends InheritedWidget {
   bool updateShouldNotify(OnboardContainer oldWidget) =>
       tabController != oldWidget.tabController ||
       pageController != oldWidget.pageController ||
-      pages != oldWidget.pages;
+      pages != oldWidget.pages ||
+      imageControllers != oldWidget.imageControllers;
 
   static OnboardContainer of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<OnboardContainer>()!;

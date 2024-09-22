@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
-import 'package:flutter_onboard/features/onboard/mixins/onboard_animations.mixin.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
 
 @immutable
@@ -12,29 +11,31 @@ class CreateDailyRoutine extends StatefulWidget {
   State<CreateDailyRoutine> createState() => _CreateDailyRoutineState();
 }
 
-class _CreateDailyRoutineState extends State<CreateDailyRoutine>
-    with SingleTickerProviderStateMixin, OnboardAnimations {
-  late final AnimationController _controller;
+class _CreateDailyRoutineState extends State<CreateDailyRoutine> {
+  String get animationName => 'CreateDailyRoutine';
 
-  @override
-  void initState() {
-    super.initState();
+  AnimationController? get animationController =>
+      OnboardContainer.of(context).imageControllers['CreateDailyRoutine'];
 
-    setAnimationController();
+  void startAnimation() {
+    animationController!.forward();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-
-    super.dispose();
+  void stopAnimation() {
+    animationController!.reverse();
   }
 
-  void setAnimationController() {
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 800),
-      vsync: this,
-    );
+  String getPageNameByIndex(int pageIndex) =>
+      OnboardContainer.of(context).pages[pageIndex].runtimeType.toString();
+
+  void handleAnimationController(int pageIndex) {
+    for (var i = 0; i < OnboardContainer.of(context).pages.length; i++) {
+      if (getPageNameByIndex(pageIndex) == animationName && pageIndex == i) {
+        return startAnimation();
+      }
+    }
+
+    stopAnimation();
   }
 
   @override
@@ -46,27 +47,24 @@ class _CreateDailyRoutineState extends State<CreateDailyRoutine>
         child: Wrap(
           runSpacing: 24.0,
           children: [
-            ValueListenableBuilder<OnboardState>(
-              valueListenable: OnboardContainer.of(context).onboardStore,
-              builder: (BuildContext context, OnboardState state, Widget? _) {
-                handleAnimationController(
-                  context,
-                  _controller,
-                  pageIndex: state.pageIndex!,
-                );
+            if (animationController != null)
+              ValueListenableBuilder<OnboardState>(
+                valueListenable: OnboardContainer.of(context).onboardStore,
+                builder: (BuildContext context, OnboardState state, Widget? _) {
+                  handleAnimationController(state.pageIndex!);
 
-                return SizedBox(
-                  width: double.infinity,
-                  child: ScaleTransition(
-                    scale: _controller.drive(
-                      CurveTween(curve: Curves.easeInOutCubic),
+                  return SizedBox(
+                    width: double.infinity,
+                    child: ScaleTransition(
+                      scale: animationController!.drive(
+                        CurveTween(curve: Curves.easeInOutCubic),
+                      ),
+                      child: SvgPicture.asset(
+                          'assets/images/intro/create_daily_routine.svg'),
                     ),
-                    child: SvgPicture.asset(
-                        'assets/images/intro/create_daily_routine.svg'),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              ),
             Wrap(
               runSpacing: 16.0,
               children: [
