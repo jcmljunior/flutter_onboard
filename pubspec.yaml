@@ -28,7 +28,6 @@ flutter:
         - asset: assets/fonts/poppins/Poppins-Bold.ttf
 
   assets:
-    - assets/images/intro/brand.svg
     - assets/images/intro/create_daily_routine.svg
     - assets/images/intro/manage_your_tasks.svg
     - assets/images/intro/organize_your_tasks.svg
