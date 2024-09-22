@@ -38,6 +38,10 @@ class _OnboardState extends State<Onboard> with TickerProviderStateMixin {
     tabController.dispose();
     pageController.dispose();
 
+    for (final imageController in imageControllers.values) {
+      imageController.dispose();
+    }
+
     super.dispose();
   }
 
