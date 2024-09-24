@@ -48,27 +48,10 @@ class _CreateDailyRoutineState extends State<CreateDailyRoutine> {
         'assets/images/intro/create_daily_routine.svg',
         colorMapper: ColorizeCreateDailyRoutine(
           targetColors: const [
-            // Afeta a cor do botão, da blusa e dos circulos presente no calendário da figura.
             Color(0xff6c63ff),
-
-            // Afeta a cor de preenchimento do calendário.
-            // Color(0xfff1f1f1),
-
-            // Afeta a cor dos circulos do calendário.
-            // Color(0xff3f3d56),
-
-            // Afeta a cor dos ícones direcionais no cabecalho do calendário.
-            // Color(0xffe6e6e6),
-
-            // Afeta a cor ícone do botão.
-            // Color(0xffffffff),
           ],
           replacementColors: [
             Theme.of(context).colorScheme.primary,
-            // Theme.of(context).colorScheme.surfaceContainerLow,
-            // Theme.of(context).colorScheme.secondaryContainer,
-            // Theme.of(context).colorScheme.surfaceContainerHighest,
-            // Theme.of(context).colorScheme.inversePrimary,
           ],
         ),
       ),

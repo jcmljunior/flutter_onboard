@@ -48,31 +48,10 @@ class _ManageYourTasksState extends State<ManageYourTasks> {
         'assets/images/intro/manage_your_tasks.svg',
         colorMapper: ColorizeCreateDailyRoutine(
           targetColors: const [
-            // Cor da blusa e ponteiros.
-            // Color(0xff3f3d56),
-
-            // Cor de preenchimento interna do relógio.
             Color(0xff6c63ff),
-
-            // Cor de preenchimento da base dos ponteiros.
-            // Color(0xffcccccc),
-
-            // Cor de preenchimento externa do relógio.
-            // Color(0xffe6e6e6),
-
-            // Objeto nas costa do personagem.
-            // Color(0xfff2f2f2),
-
-            // Cor de preenchimento borda interna do relógio.
-            // Color(0xffffffff),
           ],
           replacementColors: [
-            // Theme.of(context).colorScheme.primaryContainer,
             Theme.of(context).colorScheme.primary,
-            // Theme.of(context).colorScheme.surfaceContainerHigh,
-            // Theme.of(context).colorScheme.secondaryContainer,
-            // Theme.of(context).colorScheme.surfaceContainerLow,
-            // Theme.of(context).colorScheme.inverseSurface,
           ],
         ),
       ),
