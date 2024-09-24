@@ -113,7 +113,7 @@ class _OnboardState extends State<Onboard> with TickerProviderStateMixin {
           ],
         ),
         floatingActionButton: const NextPageButton(
-          pathFor: '/teste',
+          pathFor: '/welcome',
         ),
       ),
     );

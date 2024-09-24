@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/app/containers/theme.container.dart';
-import 'package:flutter_onboard/features/app/pages/teste.page.dart';
 import 'package:flutter_onboard/features/app/providers/theme_state.provider.dart';
 import 'package:flutter_onboard/features/onboard/pages/onboard.page.dart';
+import 'package:flutter_onboard/features/welcome/pages/welcome.page.dart';
 
 @immutable
 class AppWidget extends StatelessWidget {
@@ -27,16 +27,16 @@ class AppWidget extends StatelessWidget {
                   useMaterial3: true,
                   fontFamily: 'Poppins',
                   colorScheme: ColorScheme.fromSeed(
-                    seedColor: Colors.deepPurple,
+                    seedColor: Colors.blueAccent,
                     brightness: ThemeContainer.of(context)
                         .themeStore
                         .getBrightness(context),
                   ),
                 ),
-                initialRoute: '/',
+                initialRoute: '/welcome',
                 routes: {
-                  '/': (context) => const Onboard(),
-                  '/teste': (context) => const TestePage(),
+                  '/welcome': (context) => const Welcome(),
+                  '/onboard': (context) => const Onboard(),
                 },
               );
             });
