@@ -39,9 +39,11 @@ class NextPageButton extends StatelessWidget {
           child: FloatingActionButton(
             elevation: 1.0,
             shape: const CircleBorder(),
-            onPressed: () {
-              Navigator.of(context).pushReplacementNamed(pathFor);
-            },
+            onPressed:
+                OnboardContainer.of(context).onboardStore.value.pageIndex !=
+                        OnboardContainer.of(context).pages.length - 1
+                    ? null
+                    : () => Navigator.of(context).pushReplacementNamed(pathFor),
             child: const Icon(Icons.chevron_right),
           ),
         );
