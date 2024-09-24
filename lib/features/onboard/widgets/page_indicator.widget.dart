@@ -40,7 +40,7 @@ class PageIndicator extends StatelessWidget {
                               .value
                               .pageIndex
                       ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.surfaceContainerHigh,
+                      : Theme.of(context).colorScheme.inversePrimary,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
