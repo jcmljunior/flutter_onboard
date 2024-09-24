@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
+import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+
+part '../partials/colorize_manage_your_tasks.partial.dart';
 
 @immutable
 class ManageYourTasks extends StatefulWidget {
@@ -38,6 +41,44 @@ class _ManageYourTasksState extends State<ManageYourTasks> {
     stopAnimation();
   }
 
+  Widget _buildPicture() {
+    return SvgPicture(
+      width: 280.0,
+      SvgAssetLoader(
+        'assets/images/intro/manage_your_tasks.svg',
+        colorMapper: ColorizeCreateDailyRoutine(
+          targetColors: const [
+            // Cor da blusa e ponteiros.
+            // Color(0xff3f3d56),
+
+            // Cor de preenchimento interna do relógio.
+            Color(0xff6c63ff),
+
+            // Cor de preenchimento da base dos ponteiros.
+            // Color(0xffcccccc),
+
+            // Cor de preenchimento externa do relógio.
+            // Color(0xffe6e6e6),
+
+            // Objeto nas costa do personagem.
+            // Color(0xfff2f2f2),
+
+            // Cor de preenchimento borda interna do relógio.
+            // Color(0xffffffff),
+          ],
+          replacementColors: [
+            // Theme.of(context).colorScheme.primaryContainer,
+            Theme.of(context).colorScheme.primary,
+            // Theme.of(context).colorScheme.surfaceContainerHigh,
+            // Theme.of(context).colorScheme.secondaryContainer,
+            // Theme.of(context).colorScheme.surfaceContainerLow,
+            // Theme.of(context).colorScheme.inverseSurface,
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +100,7 @@ class _ManageYourTasksState extends State<ManageYourTasks> {
                       scale: animationController!.drive(
                         CurveTween(curve: Curves.easeInOutCubic),
                       ),
-                      child: SvgPicture.asset(
-                          'assets/images/intro/manage_your_tasks.svg'),
+                      child: _buildPicture(),
                     ),
                   );
                 },

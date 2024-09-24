@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
+import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+
+part '../partials/colorize_create_daily_routine.partial.dart';
 
 @immutable
 class CreateDailyRoutine extends StatefulWidget {
@@ -38,6 +41,40 @@ class _CreateDailyRoutineState extends State<CreateDailyRoutine> {
     stopAnimation();
   }
 
+  Widget _buildPicture() {
+    return SvgPicture(
+      width: 280.0,
+      SvgAssetLoader(
+        'assets/images/intro/create_daily_routine.svg',
+        colorMapper: ColorizeCreateDailyRoutine(
+          targetColors: const [
+            // Afeta a cor do botão, da blusa e dos circulos presente no calendário da figura.
+            Color(0xff6c63ff),
+
+            // Afeta a cor de preenchimento do calendário.
+            // Color(0xfff1f1f1),
+
+            // Afeta a cor dos circulos do calendário.
+            // Color(0xff3f3d56),
+
+            // Afeta a cor dos ícones direcionais no cabecalho do calendário.
+            // Color(0xffe6e6e6),
+
+            // Afeta a cor ícone do botão.
+            // Color(0xffffffff),
+          ],
+          replacementColors: [
+            Theme.of(context).colorScheme.primary,
+            // Theme.of(context).colorScheme.surfaceContainerLow,
+            // Theme.of(context).colorScheme.secondaryContainer,
+            // Theme.of(context).colorScheme.surfaceContainerHighest,
+            // Theme.of(context).colorScheme.inversePrimary,
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +96,7 @@ class _CreateDailyRoutineState extends State<CreateDailyRoutine> {
                       scale: animationController!.drive(
                         CurveTween(curve: Curves.easeInOutCubic),
                       ),
-                      child: SvgPicture.asset(
-                          'assets/images/intro/create_daily_routine.svg'),
+                      child: _buildPicture(),
                     ),
                   );
                 },

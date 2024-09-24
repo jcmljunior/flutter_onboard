@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
+import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+
+part '../partials/colorize_organize_your_tasks.partial.dart';
 
 @immutable
 class OrganizeYourTasks extends StatefulWidget {
@@ -38,6 +41,23 @@ class _OrganizeYourTasksState extends State<OrganizeYourTasks> {
     stopAnimation();
   }
 
+  Widget _buildPicture() {
+    return SvgPicture(
+      width: 280.0,
+      SvgAssetLoader(
+        'assets/images/intro/organize_your_tasks.svg',
+        colorMapper: ColorizeOrganizeYourTasks(
+          targetColors: const [
+            Color(0xff6c63ff),
+          ],
+          replacementColors: [
+            Theme.of(context).colorScheme.primary,
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +79,7 @@ class _OrganizeYourTasksState extends State<OrganizeYourTasks> {
                       scale: animationController!.drive(
                         CurveTween(curve: Curves.easeInOutCubic),
                       ),
-                      child: SvgPicture.asset(
-                          'assets/images/intro/organize_your_tasks.svg'),
+                      child: _buildPicture(),
                     ),
                   );
                 },
