@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
 import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
 
 part '../partials/colorize_organize_your_tasks.partial.dart';
 
@@ -90,14 +91,17 @@ class _OrganizeYourTasksState extends State<OrganizeYourTasks> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'Organize your tasks',
+                    TranslateManager.of(context)
+                        .translate('onboard/organize_your_tasks/title'),
                     style: Theme.of(context).textTheme.headlineLarge!,
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'You can organize your daily tasks by adding your tasks into separate categories.',
+                    TranslateManager.of(context).translate(
+                      'onboard/organize_your_tasks/subtitle',
+                    ),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),

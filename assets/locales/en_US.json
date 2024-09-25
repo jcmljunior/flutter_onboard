@@ -1,4 +1,11 @@
 {
-    "welcome/title": "Welcome to %s",
-    "welcome/subtitle": "Please choose your language."
-  }
+  "welcome/title": "Welcome to %s",
+  "welcome/subtitle": "Please choose your language.",
+  "welcome/language": "This message does't need translation.",
+  "onboard/manage_your_tasks/title": "Manage your tasks",
+  "onboard/manage_your_tasks/subtitle": "You can easily manage all of your daily tasks in DoMe for free.",
+  "onboard/organize_your_tasks/title": "Organize your tasks",
+  "onboard/organize_your_tasks/subtitle": "You can organize your daily tasks by adding your tasks into separate categories.",
+  "onboard/create_daily_routine/title": "Create daily routine",
+  "onboard/create_daily_routine/subtitle": "In %s  you can create your personalized routine to stay productive."
+}

@@ -17,8 +17,7 @@ class TranslateManager extends InheritedWidget {
   static TranslateManager of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<TranslateManager>()!;
 
-  TranslateManagerStore get store => translateManagerStore;
-
+  // Prover acesso a função de tradução.
   Function(String key, {List<String>? args}) get translate =>
       translateManagerStore.translate;
 }

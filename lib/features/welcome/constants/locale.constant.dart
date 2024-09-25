@@ -1,4 +1,0 @@
-enum Locale {
-  ptBR,
-  enUS,
-}

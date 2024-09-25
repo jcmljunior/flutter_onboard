@@ -7,7 +7,7 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
   TranslateManagerStore() : super(TranslateManagerStateInitial()) {
     // Inicialização do idioma padrão.
     // Necessário caso a informação seja provida por um banco de dados...
-    // setLocale('en_US');
+    // setLocale('pt_BR');
 
     // Carregamento dos idiomas disponíveis.
     loadLocalizedStrings(value.currentLanguage!)
@@ -19,9 +19,24 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
   // Importante: os idiomas disponíveis devem estar aqui.
   List<String> get availableLocales => ['en_US', 'pt_BR'];
 
-  String get languageCode => value.currentLanguage!.split('_').first;
+  String get getLanguageCode => value.currentLanguage!.split('_').first;
 
-  String get countryCode => value.currentLanguage!.split('_').last;
+  String get getCountryCode => value.currentLanguage!.split('_').last;
+
+  String getLanguageName({String? locale}) {
+    if (!availableLocales.contains(locale) && locale != null) {
+      throw Exception('Locale not available');
+    }
+
+    switch (locale) {
+      case 'en_US':
+        return 'English';
+      case 'pt_BR':
+        return 'Portuguese';
+      default:
+        return 'English';
+    }
+  }
 
   Future<Map<String, String>> loadLocalizedStrings(String locale) async {
     try {
@@ -37,6 +52,15 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  Future<void> handleLocaleChange(String? locale) async {
+    setLocale(locale).then((_) {
+      loadLocalizedStrings(value.currentLanguage!)
+          .then((Map<String, String> localizedStrings) {
+        setLocalizedStrings(localizedStrings);
+      });
+    });
   }
 
   Future setLocale(String? locale) async {

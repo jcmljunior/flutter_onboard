@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
 import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
 
 part '../partials/colorize_manage_your_tasks.partial.dart';
 
@@ -90,14 +91,18 @@ class _ManageYourTasksState extends State<ManageYourTasks> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'Manage your tasks',
+                    TranslateManager.of(context).translate(
+                      'onboard/manage_your_tasks/title',
+                    ),
                     style: Theme.of(context).textTheme.headlineLarge!,
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'You can easily manage all of your daily tasks in DoMe for free.',
+                    TranslateManager.of(context).translate(
+                      'onboard/manage_your_tasks/subtitle',
+                    ),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),

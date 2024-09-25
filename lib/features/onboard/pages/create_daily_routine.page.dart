@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_onboard/features/app/constants/app.constant.dart';
 import 'package:flutter_onboard/features/onboard/containers/onboard.container.dart';
 import 'package:flutter_onboard/features/onboard/partials/colorize.partial.dart';
 import 'package:flutter_onboard/features/onboard/providers/onboard_state.provider.dart';
+import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
 
 part '../partials/colorize_create_daily_routine.partial.dart';
 
@@ -90,14 +92,17 @@ class _CreateDailyRoutineState extends State<CreateDailyRoutine> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'Create daily routine',
+                    TranslateManager.of(context)
+                        .translate('onboard/create_daily_routine/title'),
                     style: Theme.of(context).textTheme.headlineLarge!,
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'In Uptodo  you can create your personalized routine to stay productive.',
+                    TranslateManager.of(context).translate(
+                        'onboard/create_daily_routine/subtitle',
+                        args: [AppConstant.appName]),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
