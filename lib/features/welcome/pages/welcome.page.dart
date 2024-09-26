@@ -12,8 +12,59 @@ class Welcome extends StatelessWidget {
   String welcomeSubtitle(BuildContext context) =>
       TranslateManager.of(context).translate('welcome/subtitle');
 
+  Widget displayLanguageChoices(BuildContext context) {
+    final List<String> languages = TranslateManager.of(context)
+        .translateManagerStore
+        .getPreferredLanguages(context);
+
+    return Wrap(
+      children: List.generate(languages.length, (int index) {
+        return RadioListTile<String>(
+          title: Text(
+            TranslateManager.of(context).translate(
+              'onboard/languages/${languages[index]}',
+            ),
+          ),
+          subtitle: View.of(context)
+                  .platformDispatcher
+                  .locale
+                  .toString()
+                  .contains(TranslateManager.of(context)
+                      .translateManagerStore
+                      .getPreferredLanguages(context)[index])
+              ? Text(TranslateManager.of(context).translate(
+                  'onboard/languages/description',
+                ))
+              : null,
+          value: languages[index],
+          groupValue: TranslateManager.of(context)
+              .translateManagerStore
+              .value
+              .currentLanguage,
+          onChanged: (String? value) {
+            TranslateManager.of(context)
+                .translateManagerStore
+                .handleLanguageChange(value!);
+          },
+        );
+      }),
+    );
+  }
+
+  void handlePlatformDispatchLanguage(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      TranslateManager.of(context).translateManagerStore.handleLanguageChange(
+          TranslateManager.of(context)
+              .translateManagerStore
+              .getPreferredLanguages(context)
+              .first);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    handlePlatformDispatchLanguage(context);
+
     return ValueListenableBuilder<TranslateManagerState>(
         valueListenable: TranslateManager.of(context).translateManagerStore,
         builder:
@@ -96,40 +147,7 @@ class Welcome extends StatelessWidget {
                           height: 24.0,
                         ),
 
-                        Wrap(
-                          children: List.generate(
-                              TranslateManager.of(context)
-                                  .translateManagerStore
-                                  .availableLanguages
-                                  .length, (int index) {
-                            return RadioListTile<String>(
-                              value: TranslateManager.of(context)
-                                  .translateManagerStore
-                                  .getPreferredLanguages(context)[index],
-                              groupValue: state.currentLanguage!,
-                              onChanged: (String? value) {
-                                TranslateManager.of(context)
-                                    .translateManagerStore
-                                    .handleLanguageChange(value!);
-                              },
-                              title:
-                                  Text(TranslateManager.of(context).translate(
-                                'onboard/languages/${TranslateManager.of(context).translateManagerStore.availableLanguages[index]}',
-                              )),
-                              subtitle: View.of(context)
-                                      .platformDispatcher
-                                      .locale
-                                      .toString()
-                                      .contains(TranslateManager.of(context)
-                                          .translateManagerStore
-                                          .availableLanguages[index])
-                                  ? Text(TranslateManager.of(context).translate(
-                                      'onboard/languages/description',
-                                    ))
-                                  : null,
-                            );
-                          }),
-                        ),
+                        displayLanguageChoices(context),
                       ],
                     ),
                   ),
