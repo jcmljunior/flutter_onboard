@@ -1,0 +1,7 @@
+{
+    "welcome/title": "Bienvenido(a) al %s",
+    "welcome/subtitle": "Por favor, elige tu idioma.",
+    "onboard/languages/pt_BR": "Portugues",
+    "onboard/languages/en_US": "Ingles",
+    "onboard/languages/es_ES": "Español"
+}

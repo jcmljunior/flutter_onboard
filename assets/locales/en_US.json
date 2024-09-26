@@ -7,5 +7,8 @@
   "onboard/organize_your_tasks/title": "Organize your tasks",
   "onboard/organize_your_tasks/subtitle": "You can organize your daily tasks by adding your tasks into separate categories.",
   "onboard/create_daily_routine/title": "Create daily routine",
-  "onboard/create_daily_routine/subtitle": "In %s  you can create your personalized routine to stay productive."
+  "onboard/create_daily_routine/subtitle": "In %s  you can create your personalized routine to stay productive.",
+  "onboard/languages/pt_BR": "Portuguese",
+  "onboard/languages/en_US": "English",
+  "onboard/languages/es_ES": "Spanish"
 }

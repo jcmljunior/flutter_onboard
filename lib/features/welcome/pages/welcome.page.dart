@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/app/constants/app.constant.dart';
 import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
@@ -95,31 +96,27 @@ class Welcome extends StatelessWidget {
                         const SizedBox(
                           height: 24.0,
                         ),
+
                         Wrap(
                           children: List.generate(
                               TranslateManager.of(context)
                                   .translateManagerStore
-                                  .availableLocales
+                                  .availableLanguages
                                   .length, (int index) {
-                            return RadioListTile(
-                              title: Text(TranslateManager.of(context)
-                                  .translateManagerStore
-                                  .getLanguageName(
-                                      locale: TranslateManager.of(context)
-                                          .translateManagerStore
-                                          .availableLocales
-                                          .elementAt(index))),
+                            return RadioListTile<String>(
                               value: TranslateManager.of(context)
                                   .translateManagerStore
-                                  .availableLocales
-                                  .elementAt(index),
-                              groupValue: TranslateManager.of(context)
-                                  .translateManagerStore
-                                  .value
-                                  .currentLanguage,
-                              onChanged: (value) => TranslateManager.of(context)
-                                  .translateManagerStore
-                                  .handleLocaleChange(value),
+                                  .availableLanguages[index],
+                              groupValue: state.currentLanguage!,
+                              onChanged: (String? value) {
+                                TranslateManager.of(context)
+                                    .translateManagerStore
+                                    .handleLanguageChange(value!);
+                              },
+                              title:
+                                  Text(TranslateManager.of(context).translate(
+                                'onboard/languages/${TranslateManager.of(context).translateManagerStore.availableLanguages[index]}',
+                              )),
                             );
                           }),
                         ),

@@ -36,3 +36,4 @@ flutter:
     - assets/images/intro/organize_your_tasks.svg
     - assets/locales/en_US.json
     - assets/locales/pt_BR.json
+    - assets/locales/es_ES.json
