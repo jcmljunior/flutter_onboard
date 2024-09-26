@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/widgets.dart';
 import 'package:flutter_onboard/features/welcome/providers/translate_manager_state.provider.dart';
 
 class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
@@ -16,6 +16,20 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
 
   String get countryCode => value.currentLanguage!.split('_').last;
 
+  List<String> getPreferredLanguages(BuildContext context) {
+    List<String> languages = availableLanguages;
+    String locale = View.of(context).platformDispatcher.locale.toString();
+
+    if (!availableLanguages.contains(locale)) {
+      return availableLanguages;
+    }
+
+    languages.remove(locale);
+    languages.insert(0, locale);
+
+    return languages;
+  }
+
   Future<void> setLanguage(String newLanguage) async {
     if (!availableLanguages.contains(newLanguage)) {
       return;
@@ -30,7 +44,9 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
       Map<String, String> newLocalizedStrings) async {
     await loadLocalizedStrings(defaultLanguage).then((localizedStrings) {
       value = value.copyWith(
-        localizedStrings: localizedStrings!.map((String key, String value) {
+        hasCompleteTranslation:
+            localizedStrings!.length == newLocalizedStrings.length,
+        localizedStrings: localizedStrings.map((String key, String value) {
           return MapEntry(
             key,
             newLocalizedStrings[key] ?? value,

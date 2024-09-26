@@ -9,5 +9,10 @@
   "onboard/create_daily_routine/subtitle": "Em %s, você pode criar sua rotina personalizada para ficar produtivo.",
   "onboard/languages/pt_BR": "Português",
   "onboard/languages/en_US": "Inglês",
-  "onboard/languages/es_ES": "Espanhol"
+  "onboard/languages/es_ES": "Espanhol",
+  "onboard/languages/description": "Idioma do dispositivo.",
+  "onboard/show_language_incomplete_dialog/title": "Atenção: idioma incompleto",
+  "onboard/show_language_incomplete_dialog/content": "O idioma %s não está completo. Deseja prosseguir mesmo assim?",
+  "onboard/show_language_incomplete_dialog/actions/ok": "Ok",
+  "onboard/show_language_incomplete_dialog/actions/cancel": "Cancelar"
 }

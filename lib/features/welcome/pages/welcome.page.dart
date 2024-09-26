@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/app/constants/app.constant.dart';
 import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
@@ -106,7 +105,7 @@ class Welcome extends StatelessWidget {
                             return RadioListTile<String>(
                               value: TranslateManager.of(context)
                                   .translateManagerStore
-                                  .availableLanguages[index],
+                                  .getPreferredLanguages(context)[index],
                               groupValue: state.currentLanguage!,
                               onChanged: (String? value) {
                                 TranslateManager.of(context)
@@ -117,6 +116,17 @@ class Welcome extends StatelessWidget {
                                   Text(TranslateManager.of(context).translate(
                                 'onboard/languages/${TranslateManager.of(context).translateManagerStore.availableLanguages[index]}',
                               )),
+                              subtitle: View.of(context)
+                                      .platformDispatcher
+                                      .locale
+                                      .toString()
+                                      .contains(TranslateManager.of(context)
+                                          .translateManagerStore
+                                          .availableLanguages[index])
+                                  ? Text(TranslateManager.of(context).translate(
+                                      'onboard/languages/description',
+                                    ))
+                                  : null,
                             );
                           }),
                         ),
@@ -129,8 +139,57 @@ class Welcome extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               elevation: 1.0,
               shape: const CircleBorder(),
-              onPressed: () =>
-                  Navigator.of(context).pushReplacementNamed('/onboard'),
+              onPressed: () {
+                if (!state.hasCompleteTranslation!) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          TranslateManager.of(context).translate(
+                            'onboard/show_language_incomplete_dialog/title',
+                          ),
+                        ),
+                        content: Text(
+                          TranslateManager.of(context).translate(
+                              'onboard/show_language_incomplete_dialog/content',
+                              args: [
+                                state.currentLanguage!,
+                              ]),
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text(
+                              TranslateManager.of(context).translate(
+                                'onboard/show_language_incomplete_dialog/actions/ok',
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/onboard');
+                            },
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              TranslateManager.of(context).translate(
+                                'onboard/show_language_incomplete_dialog/actions/cancel',
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+
+                  return;
+                }
+
+                Navigator.of(context).pushReplacementNamed('/onboard');
+              },
               child: const Icon(Icons.chevron_right),
             ),
           );

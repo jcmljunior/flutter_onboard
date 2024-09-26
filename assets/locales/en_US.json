@@ -1,7 +1,6 @@
 {
   "welcome/title": "Welcome to %s",
   "welcome/subtitle": "Please choose your language.",
-  "welcome/language": "This message does't need translation.",
   "onboard/manage_your_tasks/title": "Manage your tasks",
   "onboard/manage_your_tasks/subtitle": "You can easily manage all of your daily tasks in DoMe for free.",
   "onboard/organize_your_tasks/title": "Organize your tasks",
@@ -10,5 +9,10 @@
   "onboard/create_daily_routine/subtitle": "In %s  you can create your personalized routine to stay productive.",
   "onboard/languages/pt_BR": "Portuguese",
   "onboard/languages/en_US": "English",
-  "onboard/languages/es_ES": "Spanish"
+  "onboard/languages/es_ES": "Spanish",
+  "onboard/languages/description": "Device language.",
+  "onboard/show_language_incomplete_dialog/title": "Attention: language incomplete",
+  "onboard/show_language_incomplete_dialog/content": "The language %s is incomplete. Do you want to continue anyway?",
+  "onboard/show_language_incomplete_dialog/actions/ok": "Ok",
+  "onboard/show_language_incomplete_dialog/actions/cancel": "Cancel"
 }
