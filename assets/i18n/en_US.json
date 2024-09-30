@@ -1,0 +1,22 @@
+{
+  "language_picker/title": "Welcome to %s",
+  "language_picker/description": "Please choose your language.",
+  "language_picker/i18n/description": "Device language",
+  "language_picker/i18n/en_US": "English",
+  "language_picker/i18n/pt_BR": "Portuguese",
+  "language_picker/i18n/es_ES": "Spanish",
+  "language_picker/dialog_title": "Oops, Incomplete Language Package",
+  "language_picker/dialog_content": "The selected language package is incomplete. Some translations may not appear correctly.",
+  "language_picker/dialog_actions/confirm": "OK",
+  "language_picker/dialog_actions/cancel": "Cancel",
+  "overview/manage_your_tasks/title": "Manage your tasks",
+  "overview/manage_your_tasks/description": "You can easily manage all of your daily tasks in DoMe for free.",
+  "overview/organize_your_tasks/title": "Organize your tasks",
+  "overview/organize_your_tasks/description": "You can organize your daily tasks by adding your tasks into separate categories.",
+  "overview/create_daily_routine/title": "Create daily routine",
+  "overview/create_daily_routine/description": "In %s  you can create your personalized routine to stay productive.",
+  "overview/personalize_your_color/title": "Personalize Your Experience",
+  "overview/personalize_your_color/description": "Choose the app's primary color and customize the interface to match your style.",
+  "overview/get_started/title": "You're All Set!",
+  "overview/get_started/description": "You've completed all the steps. Now you're ready to explore and start using DoMe to boost your productivity!"
+}

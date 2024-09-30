@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboard/features/app/containers/theme.container.dart';
-import 'package:flutter_onboard/features/app/providers/theme_state.provider.dart';
-import 'package:flutter_onboard/features/onboard/pages/onboard.page.dart';
-import 'package:flutter_onboard/features/welcome/containers/translate_manager.container.dart';
-import 'package:flutter_onboard/features/welcome/pages/welcome.page.dart';
+import 'package:flutter_onboard/features/language_picker/pages/language_picker.page.dart';
+import 'package:flutter_onboard/features/overview/pages/overview.page.dart';
+import 'package:flutter_onboard/features/theme/containers/theme.container.dart';
+import 'package:flutter_onboard/features/theme/providers/theme_state.provider.dart';
+import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
 
-@immutable
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TranslateManager(
+    return TranslateContainer(
       child: ThemeContainer(
         child: Builder(builder: (BuildContext context) {
           ThemeContainer.of(context)
               .themeStore
               .handlePlatformBrightnessChanged(context);
 
-          return ValueListenableBuilder<ThemeState>(
-              valueListenable: ThemeContainer.of(context).themeStore,
-              builder:
-                  (BuildContext context, ThemeState themeState, Widget? _) {
-                return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Flutter Onboard',
-                  themeMode: themeState.themeMode,
-                  theme: ThemeData(
-                    useMaterial3: true,
-                    fontFamily: 'Poppins',
-                    colorScheme: ColorScheme.fromSeed(
-                      seedColor: Colors.blueAccent,
-                      brightness: ThemeContainer.of(context)
-                          .themeStore
-                          .getBrightness(context),
-                    ),
+          return ValueListenableBuilder(
+            valueListenable: ThemeContainer.of(context).themeStore,
+            builder:
+                (BuildContext context, ThemeStateProvider state, Widget? _) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Onboard',
+                themeMode: state.themeMode,
+                theme: ThemeData(
+                  useMaterial3: true,
+                  colorScheme: ColorScheme.fromSeed(
+                    seedColor: state.accentColor!,
+                    brightness: ThemeContainer.of(context)
+                        .themeStore
+                        .getBrightness(context),
                   ),
-                  initialRoute: '/welcome',
-                  routes: {
-                    '/welcome': (context) => const Welcome(),
-                    '/onboard': (context) => const Onboard(),
-                  },
-                );
-              });
+                ),
+                initialRoute: '/',
+                routes: {
+                  '/': (context) => const LanguagePickerPage(),
+                  '/overview': (context) => const OverviewPage(),
+                },
+              );
+            },
+          );
         }),
       ),
     );

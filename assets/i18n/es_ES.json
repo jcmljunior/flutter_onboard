@@ -1,0 +1,12 @@
+{
+  "language_picker/title": "Bienvenido a %s",
+  "language_picker/description": "Por favor, elija su idioma.",
+  "language_picker/i18n/description": "Idioma del dispositivo",
+  "language_picker/i18n/en_US": "Ingles",
+  "language_picker/i18n/pt_BR": "Portugues",
+  "language_picker/i18n/es_ES": "Español",
+  "language_picker/dialog_title": "Vaya, Paquete de Idioma Incompleto",
+  "language_picker/dialog_content": "El paquete de idioma seleccionado está incompleto. Algunas traducciones pueden no aparecer correctamente.",
+  "language_picker/dialog_actions/confirm": "Aceptar",
+  "language_picker/dialog_actions/cancel": "Cancelar"
+}
