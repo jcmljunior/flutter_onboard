@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/overview/constants/overview.constant.dart';
 import 'package:flutter_onboard/features/overview/containers/overview.container.dart';
 import 'package:flutter_onboard/features/overview/providers/overview_state.provider.dart';
@@ -8,8 +8,7 @@ import 'package:flutter_onboard/features/overview/providers/overview_store.provi
 import 'package:flutter_onboard/features/overview/widgets/overview_button.widget.dart';
 import 'package:flutter_onboard/features/theme/containers/theme.container.dart';
 import 'package:flutter_onboard/features/theme/mixins/color_toolkit.mixin.dart';
-import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 @immutable
 class Colorize extends ColorMapper {
@@ -202,8 +201,8 @@ class _OverviewPageState extends State<OverviewPage>
                   child: AnimatedBuilder(
                     animation: Listenable.merge([
                       overviewStore,
-                      TranslateContainer.of(context)
-                          .translateManagerStoreProvider,
+                      TranslateManagerContainer.of(context)
+                          .translateManagerStore,
                       ThemeContainer.of(context).themeStore,
                     ]),
                     builder: (BuildContext context, Widget? _) {

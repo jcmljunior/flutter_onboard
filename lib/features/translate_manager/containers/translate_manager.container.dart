@@ -1,0 +1,26 @@
+import 'package:flutter/widgets.dart';
+import 'package:flutter_onboard/features/translate_manager/stores/translate_manager.store.dart';
+
+@immutable
+class TranslateManagerContainer extends InheritedWidget {
+  final TranslateManagerStore translateManagerStore;
+
+  const TranslateManagerContainer({
+    super.key,
+    required super.child,
+    required this.translateManagerStore,
+  });
+
+  @override
+  bool updateShouldNotify(covariant TranslateManagerContainer oldWidget) {
+    return true;
+  }
+
+  static TranslateManagerContainer of(BuildContext context) {
+    final TranslateManagerContainer? result =
+        context.dependOnInheritedWidgetOfExactType<TranslateManagerContainer>();
+
+    assert(result != null, 'No TranslateManagerContainer found in context');
+    return result!;
+  }
+}

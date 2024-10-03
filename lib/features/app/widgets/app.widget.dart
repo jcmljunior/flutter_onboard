@@ -3,14 +3,16 @@ import 'package:flutter_onboard/features/language_picker/pages/language_picker.p
 import 'package:flutter_onboard/features/overview/pages/overview.page.dart';
 import 'package:flutter_onboard/features/theme/containers/theme.container.dart';
 import 'package:flutter_onboard/features/theme/providers/theme_state.provider.dart';
-import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
+import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
+import 'package:flutter_onboard/features/translate_manager/stores/translate_manager.store.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TranslateContainer(
+    return TranslateManagerContainer(
+      translateManagerStore: TranslateManagerStore(),
       child: ThemeContainer(
         child: Builder(builder: (BuildContext context) {
           ThemeContainer.of(context)

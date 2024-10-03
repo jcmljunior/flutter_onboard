@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/language_picker/constants/language_picker.constant.dart';
 import 'package:flutter_onboard/features/language_picker/containers/language_picker.container.dart';
 import 'package:flutter_onboard/features/language_picker/widgets/language_picker_dialog.widget.dart';
-import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
+import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 class LanguagePickerButtonWidget extends StatefulWidget {
   const LanguagePickerButtonWidget({super.key});
@@ -82,10 +82,9 @@ class _LanguagePickerButtonWidgetState extends State<LanguagePickerButtonWidget>
               elevation: 1.0,
               shape: const CircleBorder(),
               onPressed: () {
-                if (!TranslateContainer.of(context)
-                    .translateManagerStoreProvider
-                    .value
-                    .hasCompletedTranslation!) {
+                if (!TranslateManagerContainer.of(context)
+                    .translateManagerStore
+                    .isFullyTranslated) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {

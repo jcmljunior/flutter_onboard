@@ -34,5 +34,5 @@ flutter:
     - assets/overview/personalize_your_color.svg
     - assets/overview/get_started.svg
     - assets/language_picker/i18n.svg
-    - assets/i18n/en_US.json
-    - assets/i18n/es_ES.json
+    - resources/locales/en_US.json
+    - resources/locales/es_ES.json

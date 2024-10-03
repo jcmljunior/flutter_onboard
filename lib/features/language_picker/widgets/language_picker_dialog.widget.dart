@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/language_picker/constants/language_picker.constant.dart';
-import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
+import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 @immutable
 class LanguagePickerDialogWidget extends StatefulWidget {
@@ -55,7 +55,7 @@ class _LanguagePickerDialogWidgetState extends State<LanguagePickerDialogWidget>
     });
 
     return AnimatedBuilder(
-      animation: TranslateContainer.of(context).translateManagerStoreProvider,
+      animation: TranslateManagerContainer.of(context).translateManagerStore,
       builder: (BuildContext context, Widget? _) {
         return ScaleTransition(
           scale: _scaleAnimation,
@@ -69,14 +69,18 @@ class _LanguagePickerDialogWidgetState extends State<LanguagePickerDialogWidget>
                 ),
               ),
               title: Text(
-                TranslateContainer.of(context).fetchLocalizedStrings(
-                  'language_picker/dialog_title',
-                ),
+                TranslateManagerContainer.of(context)
+                    .translateManagerStore
+                    .fetchLocalizedStrings(
+                      'language_picker/dialog_title',
+                    ),
               ),
               content: Text(
-                TranslateContainer.of(context).fetchLocalizedStrings(
-                  'language_picker/dialog_content',
-                ),
+                TranslateManagerContainer.of(context)
+                    .translateManagerStore
+                    .fetchLocalizedStrings(
+                      'language_picker/dialog_content',
+                    ),
               ),
               actions: <Widget>[
                 TextButton(
@@ -87,9 +91,11 @@ class _LanguagePickerDialogWidgetState extends State<LanguagePickerDialogWidget>
                     });
                   },
                   child: Text(
-                    TranslateContainer.of(context).fetchLocalizedStrings(
-                      'language_picker/dialog_actions/confirm',
-                    ),
+                    TranslateManagerContainer.of(context)
+                        .translateManagerStore
+                        .fetchLocalizedStrings(
+                          'language_picker/dialog_actions/confirm',
+                        ),
                   ),
                 ),
                 TextButton(
@@ -99,9 +105,11 @@ class _LanguagePickerDialogWidgetState extends State<LanguagePickerDialogWidget>
                     });
                   },
                   child: Text(
-                    TranslateContainer.of(context).fetchLocalizedStrings(
-                      'language_picker/dialog_actions/cancel',
-                    ),
+                    TranslateManagerContainer.of(context)
+                        .translateManagerStore
+                        .fetchLocalizedStrings(
+                          'language_picker/dialog_actions/cancel',
+                        ),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: Theme.of(context).colorScheme.error,
                         ),

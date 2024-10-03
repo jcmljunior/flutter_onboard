@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_onboard/features/app/constants/app.constant.dart';
 import 'package:flutter_onboard/features/language_picker/constants/language_picker.constant.dart';
 import 'package:flutter_onboard/features/language_picker/containers/language_picker.container.dart';
 import 'package:flutter_onboard/features/language_picker/widgets/language_picker_button.widget.dart';
-import 'package:flutter_onboard/features/translate/constants/translate.constant.dart';
-import 'package:flutter_onboard/features/translate/containers/translate.container.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_onboard/features/translate_manager/constants/translate_manager.constant.dart';
+import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 @immutable
 class Colorize extends ColorMapper {
@@ -105,10 +105,10 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
 
   Widget displayLanguageChoices(BuildContext context) {
     return AnimatedBuilder(
-      animation: TranslateContainer.of(context).translateManagerStoreProvider,
+      animation: TranslateManagerContainer.of(context).translateManagerStore,
       builder: (BuildContext context, Widget? child) {
-        List<String> languages = TranslateContainer.of(context)
-            .translateManagerStoreProvider
+        List<String> languages = TranslateManagerContainer.of(context)
+            .translateManagerStore
             .getAvailableLanguagesOrderByLanguage(
                 View.of(context).platformDispatcher.locale.toString());
         return Wrap(
@@ -117,26 +117,29 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
             (int index) {
               return RadioListTile<String>(
                 title: Text(
-                  TranslateContainer.of(context).fetchLocalizedStrings(
-                    'language_picker/i18n/${languages[index]}',
-                  ),
+                  TranslateManagerContainer.of(context)
+                      .translateManagerStore
+                      .fetchLocalizedStrings(
+                        'language_picker/i18n/${languages[index]}',
+                      ),
                 ),
                 subtitle: languages[index] ==
                         View.of(context).platformDispatcher.locale.toString()
                     ? Text(
-                        TranslateContainer.of(context).fetchLocalizedStrings(
-                          'language_picker/i18n/description',
-                        ),
+                        TranslateManagerContainer.of(context)
+                            .translateManagerStore
+                            .fetchLocalizedStrings(
+                              'language_picker/i18n/description',
+                            ),
                       )
                     : null,
                 value: languages[index],
-                groupValue: TranslateContainer.of(context)
-                    .translateManagerStoreProvider
-                    .value
+                groupValue: TranslateManagerContainer.of(context)
+                    .translateManagerStore
                     .currentLanguage,
                 onChanged: (String? value) {
-                  TranslateContainer.of(context)
-                      .translateManagerStoreProvider
+                  TranslateManagerContainer.of(context)
+                      .translateManagerStore
                       .updateLanguageHandler(value!);
                 },
               );
@@ -178,7 +181,7 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
                           child: SvgPicture(
                             width: 280.0,
                             SvgAssetLoader(
-                              '${TranslateConstant.defaultAssetPath}i18n.svg',
+                              'assets/language_picker/i18n.svg',
                               colorMapper: Colorize(
                                 targetColors: const [
                                   Color(0xff6c63ff),
@@ -193,8 +196,8 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
                       ),
                     ),
                     AnimatedBuilder(
-                      animation: TranslateContainer.of(context)
-                          .translateManagerStoreProvider,
+                      animation: TranslateManagerContainer.of(context)
+                          .translateManagerStore,
                       builder: (BuildContext context, Widget? child) {
                         return Wrap(
                           runSpacing: 16.0,
@@ -202,7 +205,8 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
                             SizedBox(
                               width: double.infinity,
                               child: Text(
-                                TranslateContainer.of(context)
+                                TranslateManagerContainer.of(context)
+                                    .translateManagerStore
                                     .fetchLocalizedStrings(
                                   'language_picker/title',
                                   replacements: [
@@ -216,10 +220,11 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
                             SizedBox(
                               width: double.infinity,
                               child: Text(
-                                TranslateContainer.of(context)
+                                TranslateManagerContainer.of(context)
+                                    .translateManagerStore
                                     .fetchLocalizedStrings(
-                                  'language_picker/description',
-                                ),
+                                      'language_picker/description',
+                                    ),
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ),
