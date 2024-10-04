@@ -13,7 +13,7 @@ class ThemeManagerContainer extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant ThemeManagerContainer oldWidget) {
-    return true;
+    return themeManagerStore != oldWidget.themeManagerStore;
   }
 
   static ThemeManagerContainer of(BuildContext context) {

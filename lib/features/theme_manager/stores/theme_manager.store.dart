@@ -13,7 +13,7 @@ class ThemeManagerStore extends ValueNotifier<ThemeManagerState> {
     );
   }
 
-  ThemeMode get themeMode => value.themeMode!;
+  ThemeMode get themeMode => state.themeMode!;
 
   set accentColor(Color color) {
     value = value.copyWith(
@@ -21,7 +21,7 @@ class ThemeManagerStore extends ValueNotifier<ThemeManagerState> {
     );
   }
 
-  Color get accentColor => value.accentColor!;
+  Color get accentColor => state.accentColor!;
 
   Brightness getBrightness(BuildContext context) {
     switch (value.themeMode) {

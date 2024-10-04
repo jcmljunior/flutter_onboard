@@ -58,7 +58,7 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
     return Map<String, String>.from(
       jsonDecode(
         await rootBundle.loadString(
-          'resources/locales/$language.json',
+          '${TranslateManagerConstant.defaultAssetPath}$language.json',
         ),
       ),
     );
@@ -84,7 +84,8 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
     return message;
   }
 
-  Widget localizedTextWidget(String key, {List<String>? replacements}) {
+  Widget localizedTextWidget(String key,
+      {List<String>? replacements, TextStyle? textTheme}) {
     return AnimatedBuilder(
       animation: this,
       builder: (BuildContext context, Widget? _) {
@@ -93,6 +94,7 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
             key,
             replacements: replacements,
           ),
+          style: textTheme,
         );
       },
     );

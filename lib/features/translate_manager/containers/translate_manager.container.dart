@@ -13,7 +13,7 @@ class TranslateManagerContainer extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant TranslateManagerContainer oldWidget) {
-    return true;
+    return translateManagerStore != oldWidget.translateManagerStore;
   }
 
   static TranslateManagerContainer of(BuildContext context) {
