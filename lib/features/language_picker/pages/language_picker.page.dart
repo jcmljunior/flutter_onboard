@@ -103,40 +103,40 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
   }
 
   Widget displayLanguageChoices(BuildContext context) {
+    final String platformLanguage =
+        View.of(context).platformDispatcher.locale.toString();
+    final List<String> availableLanguages =
+        TranslateManagerContainer.of(context)
+            .translateManagerStore
+            .getAvailableLanguagesOrderByLanguage(platformLanguage);
+
     return AnimatedBuilder(
       animation: TranslateManagerContainer.of(context).translateManagerStore,
-      builder: (BuildContext context, Widget? child) {
-        List<String> languages = TranslateManagerContainer.of(context)
-            .translateManagerStore
-            .getAvailableLanguagesOrderByLanguage(
-                View.of(context).platformDispatcher.locale.toString());
+      builder: (BuildContext context, Widget? _) {
         return Wrap(
           children: List.generate(
-            languages.length,
+            availableLanguages.length,
             (int index) {
               return RadioListTile<String>(
+                value: availableLanguages[index],
+                groupValue: TranslateManagerContainer.of(context)
+                    .translateManagerStore
+                    .currentLanguage,
                 title: Text(
                   TranslateManagerContainer.of(context)
                       .translateManagerStore
                       .fetchLocalizedStrings(
-                        'language_picker/i18n/${languages[index]}',
-                      ),
+                          'language_picker/i18n/${availableLanguages[index]}'),
                 ),
-                subtitle: languages[index] ==
-                        View.of(context).platformDispatcher.locale.toString()
-                    ? Text(
+                subtitle: availableLanguages[index] != platformLanguage
+                    ? null
+                    : Text(
                         TranslateManagerContainer.of(context)
                             .translateManagerStore
                             .fetchLocalizedStrings(
-                              'language_picker/i18n/description',
-                            ),
-                      )
-                    : null,
-                value: languages[index],
-                groupValue: TranslateManagerContainer.of(context)
-                    .translateManagerStore
-                    .currentLanguage,
-                onChanged: (String? value) {
+                                'language_picker/i18n/description'),
+                      ),
+                onChanged: (value) {
                   TranslateManagerContainer.of(context)
                       .translateManagerStore
                       .updateLanguageHandler(value!);
@@ -194,42 +194,33 @@ class _LanguagePickerPageState extends State<LanguagePickerPage>
                         ),
                       ),
                     ),
-                    AnimatedBuilder(
-                      animation: TranslateManagerContainer.of(context)
-                          .translateManagerStore,
-                      builder: (BuildContext context, Widget? child) {
-                        return Wrap(
-                          runSpacing: 16.0,
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                TranslateManagerContainer.of(context)
-                                    .translateManagerStore
-                                    .fetchLocalizedStrings(
-                                  'language_picker/title',
-                                  replacements: [
-                                    AppConstant.appName,
-                                  ],
-                                ),
-                                style:
+                    Wrap(
+                      runSpacing: 16.0,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: TranslateManagerContainer.of(context)
+                              .translateManagerStore
+                              .localizedTextWidget(
+                                'language_picker/title',
+                                replacements: [
+                                  AppConstant.appName,
+                                ],
+                                textTheme:
                                     Theme.of(context).textTheme.headlineLarge,
                               ),
-                            ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                TranslateManagerContainer.of(context)
-                                    .translateManagerStore
-                                    .fetchLocalizedStrings(
-                                      'language_picker/description',
-                                    ),
-                                style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: TranslateManagerContainer.of(context)
+                              .translateManagerStore
+                              .localizedTextWidget(
+                                'language_picker/description',
+                                textTheme:
+                                    Theme.of(context).textTheme.bodyLarge,
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                        ),
+                      ],
                     ),
                     displayLanguageChoices(context),
                   ],
