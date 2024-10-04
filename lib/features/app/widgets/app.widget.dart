@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/features/language_picker/pages/language_picker.page.dart';
 import 'package:flutter_onboard/features/overview/pages/overview.page.dart';
-import 'package:flutter_onboard/features/theme/containers/theme.container.dart';
-import 'package:flutter_onboard/features/theme/providers/theme_state.provider.dart';
+import 'package:flutter_onboard/features/theme_manager/containers/theme_manager.container.dart';
+import 'package:flutter_onboard/features/theme_manager/states/theme_manager.state.dart';
+import 'package:flutter_onboard/features/theme_manager/stores/theme_manager.store.dart';
 import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 import 'package:flutter_onboard/features/translate_manager/stores/translate_manager.store.dart';
 
@@ -13,16 +14,18 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TranslateManagerContainer(
       translateManagerStore: TranslateManagerStore(),
-      child: ThemeContainer(
+      child: ThemeManagerContainer(
+        themeManagerStore: ThemeManagerStore(),
         child: Builder(builder: (BuildContext context) {
-          ThemeContainer.of(context)
-              .themeStore
+          ThemeManagerContainer.of(context)
+              .themeManagerStore
               .handlePlatformBrightnessChanged(context);
 
           return ValueListenableBuilder(
-            valueListenable: ThemeContainer.of(context).themeStore,
+            valueListenable:
+                ThemeManagerContainer.of(context).themeManagerStore,
             builder:
-                (BuildContext context, ThemeStateProvider state, Widget? _) {
+                (BuildContext context, ThemeManagerState state, Widget? _) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Flutter Onboard',
@@ -31,8 +34,8 @@ class AppWidget extends StatelessWidget {
                   useMaterial3: true,
                   colorScheme: ColorScheme.fromSeed(
                     seedColor: state.accentColor!,
-                    brightness: ThemeContainer.of(context)
-                        .themeStore
+                    brightness: ThemeManagerContainer.of(context)
+                        .themeManagerStore
                         .getBrightness(context),
                   ),
                 ),

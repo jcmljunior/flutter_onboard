@@ -6,8 +6,8 @@ import 'package:flutter_onboard/features/overview/containers/overview.container.
 import 'package:flutter_onboard/features/overview/providers/overview_state.provider.dart';
 import 'package:flutter_onboard/features/overview/providers/overview_store.provider.dart';
 import 'package:flutter_onboard/features/overview/widgets/overview_button.widget.dart';
-import 'package:flutter_onboard/features/theme/containers/theme.container.dart';
-import 'package:flutter_onboard/features/theme/mixins/color_toolkit.mixin.dart';
+import 'package:flutter_onboard/features/theme_manager/containers/theme_manager.container.dart';
+import 'package:flutter_onboard/features/theme_manager/mixins/color_utils.mixin.dart';
 import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 @immutable
@@ -42,7 +42,7 @@ class OverviewPage extends StatefulWidget {
 }
 
 class _OverviewPageState extends State<OverviewPage>
-    with TickerProviderStateMixin, ColorToolkit {
+    with TickerProviderStateMixin, ColorUtilsMixin {
   late final OverviewStore overviewStore;
   late final TabController tabController;
   late final PageController pageController;
@@ -203,7 +203,7 @@ class _OverviewPageState extends State<OverviewPage>
                       overviewStore,
                       TranslateManagerContainer.of(context)
                           .translateManagerStore,
-                      ThemeContainer.of(context).themeStore,
+                      ThemeManagerContainer.of(context).themeManagerStore,
                     ]),
                     builder: (BuildContext context, Widget? _) {
                       return PageView(
@@ -300,15 +300,15 @@ class _OverviewPageState extends State<OverviewPage>
                                                     16.0,
                                                   ),
                                                   onTap: () {
-                                                    ThemeContainer.of(context)
-                                                        .themeStore
-                                                        .setAccentColor(
-                                                            OverviewConstant
-                                                                .accentColors
-                                                                .entries
-                                                                .elementAt(
-                                                                    index)
-                                                                .value);
+                                                    ThemeManagerContainer.of(
+                                                                context)
+                                                            .themeManagerStore
+                                                            .accentColor =
+                                                        OverviewConstant
+                                                            .accentColors
+                                                            .entries
+                                                            .elementAt(index)
+                                                            .value;
                                                   },
                                                   child: Padding(
                                                     padding:
@@ -341,9 +341,9 @@ class _OverviewPageState extends State<OverviewPage>
                                                                       .elementAt(
                                                                           index)
                                                                       .value ==
-                                                                  ThemeContainer.of(
+                                                                  ThemeManagerContainer.of(
                                                                           context)
-                                                                      .themeStore
+                                                                      .themeManagerStore
                                                                       .value
                                                                       .accentColor
                                                               ? const Icon(

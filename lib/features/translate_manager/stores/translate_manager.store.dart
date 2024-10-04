@@ -9,13 +9,7 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
     updateLanguageHandler(value.currentLanguage!);
   }
 
-  TranslateManagerState get state => value;
-
-  String get currentLanguage => value.currentLanguage!;
-
-  Map<String, String> get localizedStrings => value.localizedStrings!;
-
-  bool get isFullyTranslated => value.isFullyTranslated!;
+  TranslateManagerState get state => super.value;
 
   set currentLanguage(String? currentLanguage) {
     value = state.copyWith(
@@ -23,17 +17,23 @@ class TranslateManagerStore extends ValueNotifier<TranslateManagerState> {
     );
   }
 
+  String get currentLanguage => state.currentLanguage!;
+
   set isFullyTranslated(bool? isFullyTranslated) {
     value = state.copyWith(
       isFullyTranslated: isFullyTranslated,
     );
   }
 
+  bool get isFullyTranslated => state.isFullyTranslated!;
+
   set localizedStrings(Map<String, String>? localizedStrings) {
     value = state.copyWith(
       localizedStrings: localizedStrings,
     );
   }
+
+  Map<String, String> get localizedStrings => state.localizedStrings!;
 
   List<String> getAvailableLanguagesOrderByLanguage(String language) {
     if (!TranslateManagerConstant.defaultAvailableLanguages

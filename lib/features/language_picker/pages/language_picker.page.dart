@@ -4,7 +4,6 @@ import 'package:flutter_onboard/features/app/constants/app.constant.dart';
 import 'package:flutter_onboard/features/language_picker/constants/language_picker.constant.dart';
 import 'package:flutter_onboard/features/language_picker/containers/language_picker.container.dart';
 import 'package:flutter_onboard/features/language_picker/widgets/language_picker_button.widget.dart';
-import 'package:flutter_onboard/features/translate_manager/constants/translate_manager.constant.dart';
 import 'package:flutter_onboard/features/translate_manager/containers/translate_manager.container.dart';
 
 @immutable
