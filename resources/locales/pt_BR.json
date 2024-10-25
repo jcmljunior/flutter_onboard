@@ -1,0 +1,22 @@
+{
+    "choose_language.welcome": "Bem-vindo(a) ao %s",
+    "choose_language.please_choose_your_language": "Por favor escolha o seu idioma.",
+    "choose_language.device_language": "Linguagem do dispositivo.",
+    "choose_language.pt_BR": "Português do Brasil",
+    "choose_language.en_US": "Inglês",
+    "choose_language.es_ES": "Espanhol",
+    "choose_language.incomplete_language.title": "Oppss, idioma incompleto.",
+    "choose_language.incomplete_language.description": "Algumas traduções no idioma \"%s\" não estão disponíveis. Para garantir a melhor experiência, as partes ausentes serão complementadas com o idioma \"%s\". Continuar mesmo assim?",
+    "choose_language.incomplete_language.confirm": "Confirmar",
+    "choose_language.incomplete_language.cancel": "Cancelar",
+    "overview.skip": "Pular",
+    "overview.back": "Voltar",
+    "overview.manage_your_tasks.title": "Gerenciar suas tarefas",
+    "overview.manage_your_tasks.description": "Mantenha suas tarefas organizada. Adicione, edite ou exclua tarefas conforme necessário e acompanhe seu progresso.",
+    "overview.schedule_your_tasks.title": "Temporizar suas tarefas",
+    "overview.schedule_your_tasks.description": "Otimize seu tempo dedicando períodos específicos para cada tarefa. Você pode definir limites de tempo para concluir suas atividades, ajudando a aumentar sua produtividade e evitar procrastinação.",
+    "overview.plan_your_tasks.title": "Planejar suas tarefas",
+    "overview.plan_your_tasks.description": "Organize sua carga de trabalho de forma eficaz criando um plano detalhado para suas tarefas. Defina prazos, categorize atividades e visualize sua agenda para o dia ou a semana.",
+    "overview.get_started.title": "Tudo pronto!",
+    "overview.get_started.description": "Você concluiu todos os passos. Agora você está pronto para explorar e começar a usar o %s para aumentar sua produtividade!"
+}

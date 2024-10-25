@@ -1,0 +1,14 @@
+{
+    "choose_language.welcome": "Welcome to %s",
+    "choose_language.please_choose_your_language": "Please choose your language.",
+    "choose_language.device_language": "Device language.",
+    "choose_language.pt_BR": "Portuguese Brazil",
+    "choose_language.en_US": "English",
+    "choose_language.es_ES": "Spanish",
+    "choose_language.incomplete_language.title": "Whoops, incomplete language.",
+    "choose_language.incomplete_language.description": "Some translations in the \"%s\" language are missing. To ensure the best experience, the missing parts will be filled in with the \"%s\" language. Continue anyway?",
+    "overview.skip": "Skip",
+    "overview.back": "Back",
+    "overview.get_started.title": "You're All Set!",
+    "overview.get_started.description": "You've completed all the steps. Now you're ready to explore and start using %s to boost your productivity!"
+}

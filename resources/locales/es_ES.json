@@ -1,0 +1,10 @@
+{
+    "choose_language.welcome": "Bienvenido(a) a %s",
+    "choose_language.please_choose_your_language": "Por favor elija su idioma.",
+    "choose_language.device_language": "Idioma del dispositivo.",
+    "choose_language.pt_BR": "Portugues Brazil",
+    "choose_language.en_US": "Ingles",
+    "choose_language.es_ES": "Español",
+    "choose_language.incomplete_language.title": "Vaya, idioma incompleto.",
+    "choose_language.incomplete_language.description": "Faltan algunas traducciones en el idioma \"%s\". Para garantizar la mejor experiencia, las partes faltantes se completarán con el idioma \"%s\". Continuar sin embargo?"
+}

@@ -1,6 +1,6 @@
 name: flutter_onboard
 description: "A new Flutter project."
-publish_to: "none"
+publish_to: 'none'
 version: 0.1.0
 
 environment:
@@ -12,27 +12,28 @@ dependencies:
   flutter_svg: ^2.0.10+1
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
 
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins/Poppins-Regular.ttf
-        - asset: assets/fonts/poppins/Poppins-Medium.ttf
-        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
-
   assets:
-    - assets/overview/create_daily_routine.svg
-    - assets/overview/manage_your_tasks.svg
-    - assets/overview/organize_your_tasks.svg
-    - assets/overview/personalize_your_color.svg
-    - assets/overview/get_started.svg
-    - assets/language_picker/i18n.svg
-    - assets/i18n/en_US.json
-    - assets/i18n/es_ES.json
+    - resources/locales/pt_BR.json
+    - resources/locales/en_US.json
+    - resources/locales/es_ES.json
+    - resources/images/undraw_file_manager.svg
+    - resources/images/undraw_schedule.svg
+    - resources/images/undraw_time_management.svg
+    - resources/images/get_started.svg
+    - resources/images/i18n.svg
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: resources/fonts/inter/Inter-VariableFont_opsz,wght.ttf
+          style: normal
+
+        - asset: resources/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf
+          style: italic
