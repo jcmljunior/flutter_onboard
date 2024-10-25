@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_onboard/features/overview/providers/overview_store.provider.dart';
+import 'package:flutter/material.dart' show TabController;
+import 'package:flutter/widgets.dart';
+
+import '../stores/overview.store.dart';
 
 @immutable
 class OverviewContainer extends InheritedWidget {
   final OverviewStore overviewStore;
   final TabController tabController;
   final PageController pageController;
-  final Map<String, AnimationController> imageControllers;
+  final List<AnimationController> imageControllers;
 
   const OverviewContainer({
     super.key,
@@ -18,12 +20,18 @@ class OverviewContainer extends InheritedWidget {
   });
 
   @override
-  bool updateShouldNotify(OverviewContainer oldWidget) =>
-      tabController != oldWidget.tabController ||
-      pageController != oldWidget.pageController ||
-      imageControllers != oldWidget.imageControllers ||
-      overviewStore != oldWidget.overviewStore;
+  bool updateShouldNotify(covariant OverviewContainer oldWidget) {
+    return overviewStore != oldWidget.overviewStore ||
+        tabController != oldWidget.tabController ||
+        pageController != oldWidget.pageController ||
+        imageControllers != oldWidget.imageControllers;
+  }
 
-  static OverviewContainer of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<OverviewContainer>()!;
+  static OverviewContainer of(BuildContext context) {
+    final OverviewContainer? result =
+        context.dependOnInheritedWidgetOfExactType<OverviewContainer>();
+
+    assert(result != null, 'No OverviewContainer found in context');
+    return result!;
+  }
 }

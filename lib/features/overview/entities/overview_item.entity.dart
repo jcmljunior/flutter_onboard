@@ -2,13 +2,15 @@ import 'package:flutter/material.dart' show immutable;
 
 @immutable
 abstract class OverviewItemEntity {
-  final String? title;
-  final String? description;
-  final String? image;
+  final int id;
+  final String title;
+  final String description;
+  final String imagePath;
 
   const OverviewItemEntity({
-    this.title,
-    this.description,
-    this.image,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.imagePath,
   });
 }
