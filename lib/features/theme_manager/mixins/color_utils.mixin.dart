@@ -1,6 +1,6 @@
-import 'package:flutter/painting.dart' show Color, HSLColor;
+import 'package:flutter/material.dart' show Color, HSLColor;
 
-mixin ColorToolkit {
+mixin ColorUtilsMixin {
   Color darken(Color color, [double amount = .1]) {
     assert(amount >= 0 && amount <= 1);
     final hsl = HSLColor.fromColor(color);
