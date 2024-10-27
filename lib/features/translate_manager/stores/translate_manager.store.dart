@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart'
+    show BuildContext, Widget, AnimatedBuilder, Text, TextStyle;
 
 import '../../../app/extensions/value_notifier.extension.dart';
 import '../constants/translate_manager.constant.dart';

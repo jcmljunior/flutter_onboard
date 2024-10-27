@@ -57,63 +57,12 @@ class AppWidget extends StatelessWidget {
                   theme: ThemeData(
                     useMaterial3: ThemeManagerConstant.defaultUseMaterial3,
                     fontFamily: ThemeManagerConstant.defaultFontFamily,
-                    floatingActionButtonTheme: FloatingActionButtonThemeData(
-                      elevation: ThemeManagerConstant.defaultElevation,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            ThemeManagerConstant.defaultBorderRadius),
-                      ),
-                    ),
-                    elevatedButtonTheme: ElevatedButtonThemeData(
-                      style: ButtonStyle(
-                        padding: const WidgetStatePropertyAll(
-                          EdgeInsets.symmetric(
-                            horizontal: ThemeManagerConstant.defaultPadding,
-                            vertical: ThemeManagerConstant.defaultPadding / 2,
-                          ),
-                        ),
-                        iconSize: WidgetStateProperty.all(
-                          ThemeManagerConstant.defaultIconSize,
-                        ),
-                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                ThemeManagerConstant.defaultBorderRadius),
-                          ),
-                        ),
-                      ),
-                    ),
-                    textButtonTheme: TextButtonThemeData(
-                      style: ButtonStyle(
-                        padding: const WidgetStatePropertyAll(
-                          EdgeInsets.symmetric(
-                            horizontal: ThemeManagerConstant.defaultPadding,
-                            vertical: ThemeManagerConstant.defaultPadding / 2,
-                          ),
-                        ),
-                        iconSize: WidgetStateProperty.all(
-                          ThemeManagerConstant.defaultIconSize,
-                        ),
-                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                ThemeManagerConstant.defaultBorderRadius),
-                          ),
-                        ),
-                      ),
-                    ),
-                    dialogTheme: const DialogTheme(
-                      insetPadding: EdgeInsets.all(
-                        ThemeManagerConstant.defaultPadding,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            ThemeManagerConstant.defaultBorderRadius,
-                          ),
-                        ),
-                      ),
-                    ),
+                    floatingActionButtonTheme:
+                        ThemeManagerConstant.floatingActionButtonTheme,
+                    elevatedButtonTheme:
+                        ThemeManagerConstant.elevatedButtonTheme,
+                    textButtonTheme: ThemeManagerConstant.textButtonTheme,
+                    dialogTheme: ThemeManagerConstant.dialogTheme,
                     colorScheme: ColorScheme.fromSeed(
                       seedColor: themeManagerStore.accentColor,
                       brightness: themeManagerStore.brightness,

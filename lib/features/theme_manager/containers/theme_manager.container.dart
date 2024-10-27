@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import '../stores/theme_manager.store.dart';
 
 @immutable

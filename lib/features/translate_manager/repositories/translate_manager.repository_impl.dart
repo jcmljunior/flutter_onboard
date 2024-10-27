@@ -1,7 +1,7 @@
-import 'dart:convert';
-import 'dart:developer';
+import 'dart:convert' show jsonDecode;
+import 'dart:developer' show log;
 
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 import '../constants/translate_manager.constant.dart';
 
