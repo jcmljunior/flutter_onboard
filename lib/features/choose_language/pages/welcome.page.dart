@@ -7,8 +7,10 @@ import '../../../app/containers/app.container.dart';
 import '../../../app/stores/app.store.dart';
 import '../../../core/dialog/stores/dialog.store.dart';
 import '../../colorize_vectors/colorize_vector.dart';
+import '../../shimmer_animation/widgets/shimmering_text.widget.dart';
 import '../../translate_manager/constants/translate_manager.constant.dart';
 import '../../translate_manager/containers/translate_manager.container.dart';
+import '../../translate_manager/states/translate_manager.state.dart';
 import '../../translate_manager/stores/translate_manager.store.dart';
 import '../containers/choose_language.container.dart';
 import '../widgets/floating_action_button.widget.dart';
@@ -45,13 +47,15 @@ class _WelcomePageState extends State<WelcomePage> {
         children: List.generate(
           availableLanguages.length,
           (int index) => RadioListTile<Locale>(
-            title: Text(
-              translateManagerStore.fetchLocalizedStrings(
-                  'choose_language.${availableLanguages.elementAt(index)}'),
+            title: ShimmeringTextWidget<TranslateManagerState>(
+              'choose_language.${availableLanguages.elementAt(index)}',
+              store: translateManagerStore,
             ),
+
             subtitle: availableLanguages.elementAt(index) == platformLanguage
-                ? Text(translateManagerStore
-                    .fetchLocalizedStrings('choose_language.device_language'))
+                ? ShimmeringTextWidget<TranslateManagerState>(
+                    'choose_language.device_language',
+                    store: translateManagerStore)
                 : null,
             value: availableLanguages.elementAt(index),
             groupValue: translateManagerStore.currentLocale,
@@ -84,6 +88,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final TranslateManagerStore translateManagerStore =
+        TranslateManagerContainer.of(context).translateManagerStore;
+
     return ChooseLanguageContainer(
       dialogStore: dialogStore,
       child: Scaffold(
@@ -125,23 +132,20 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: [
                     SizedBox(
                       width: double.infinity,
-                      child: TranslateManagerContainer.of(context)
-                          .translateManagerStore
-                          .localizedTextWidget(
-                            'choose_language.welcome',
-                            replacements: [AppConstant.appName],
-                            textTheme:
-                                Theme.of(context).textTheme.headlineMedium,
-                          ),
+                      child: ShimmeringTextWidget<TranslateManagerState>(
+                        'choose_language.welcome',
+                        replacements: [AppConstant.appName],
+                        textTheme: Theme.of(context).textTheme.headlineMedium,
+                        store: translateManagerStore,
+                      ),
                     ),
                     SizedBox(
                       width: double.infinity,
-                      child: TranslateManagerContainer.of(context)
-                          .translateManagerStore
-                          .localizedTextWidget(
-                            'choose_language.please_choose_your_language',
-                            textTheme: Theme.of(context).textTheme.bodyLarge,
-                          ),
+                      child: ShimmeringTextWidget<TranslateManagerState>(
+                        'choose_language.please_choose_your_language',
+                        textTheme: Theme.of(context).textTheme.bodyLarge,
+                        store: translateManagerStore,
+                      ),
                     ),
                   ],
                 ),
